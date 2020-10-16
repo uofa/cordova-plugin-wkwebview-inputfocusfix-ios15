@@ -1,11 +1,11 @@
 #import "CDVWKWebViewEngine+InputFocusFix.h"
 #import <objc/runtime.h>
 
-@implementation CDVWKWebViewEngine (InputFocusFix)
+@implementation CDVWebViewEngine (InputFocusFix)
 + (void) load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        CDVWKWebViewEngine *cdvWKWebViewEngine = [[CDVWKWebViewEngine alloc] init];
+        CDVWebViewEngine *cdvWKWebViewEngine = [[CDVWebViewEngine alloc] init];
         [cdvWKWebViewEngine swizzleWKContentViewForInputFocus];
     });
 }
@@ -32,6 +32,10 @@
     }
 
     if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion: iOS_13_0_0]) {
+        methodSignature = "_elementDidFocus:userIsInteracting:blurPreviousNode:activityStateChanges:userObject:";
+    }
+    
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion: iOS_14_0_0]) {
         methodSignature = "_elementDidFocus:userIsInteracting:blurPreviousNode:activityStateChanges:userObject:";
     }
     
