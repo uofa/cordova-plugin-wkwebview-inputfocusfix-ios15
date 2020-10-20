@@ -4,7 +4,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CDVWKWebViewEngine : CDVPlugin<WKScriptMessageHandler, NSURLSessionDelegate>
+@interface WKWebViewInputFocusFix : CDVPlugin<WKScriptMessageHandler, NSURLSessionDelegate>
 
 - (void) keyboardDisplayDoesNotRequireUserAction;
 

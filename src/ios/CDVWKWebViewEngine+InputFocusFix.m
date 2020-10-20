@@ -4,7 +4,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation CDVWKWebViewEngine
+@implementation WKWebViewInputFocusFix
 
 -(void) pluginInitialize {
     [super pluginInitialize];
