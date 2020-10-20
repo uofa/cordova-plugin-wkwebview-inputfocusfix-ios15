@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     //WKWebView *wkWebView = (WKWebView *) self.webView;
     
-    [self keyboardDisplayDoesNotRequireUserAction]
+    [self keyboardDisplayDoesNotRequireUserAction];
 }
 
 // https://github.com/Telerik-Verified-Plugins/WKWebView/commit/04e8296adeb61f289f9c698045c19b62d080c7e3
