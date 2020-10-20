@@ -1,9 +1,14 @@
-#import <objc/runtime.h>
-#import <Cordova/NSDictionary+CordovaPreferences.h>
-#import "CDVWebViewEngine.h"
+#import <Foundation/Foundation.h>
+#import <Cordova/CDVPlugin.h>
+#import <WebKit/WebKit.h>
 
-@interface CDVWebViewEngine (InputFocusFix)
-+ (void) load;
-- (void) swizzleWKContentViewForInputFocus;
+NS_ASSUME_NONNULL_BEGIN
+
+@interface CDVWKWebViewEngine : CDVPlugin<WKScriptMessageHandler, NSURLSessionDelegate>
+
 - (void) keyboardDisplayDoesNotRequireUserAction;
+
+
 @end
+
+NS_ASSUME_NONNULL_END

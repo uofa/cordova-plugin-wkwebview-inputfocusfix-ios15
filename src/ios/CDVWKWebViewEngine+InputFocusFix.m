@@ -1,20 +1,20 @@
-#import "CDVWKWebViewEngine+InputFocusFix.h"
 #import <objc/runtime.h>
+#import "CDVWKWebViewFileXhr.h"
+#import <Cordova/CDV.h>
 
-@implementation CDVWebViewEngine (InputFocusFix)
-+ (void) load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        CDVWebViewEngine *cdvWKWebViewEngine = [[CDVWebViewEngine alloc] init];
-        [cdvWKWebViewEngine swizzleWKContentViewForInputFocus];
-    });
-}
+NS_ASSUME_NONNULL_BEGIN
 
-- (void) swizzleWKContentViewForInputFocus {
-    NSDictionary* settings = self.commandDelegate.settings;
-    if (![settings cordovaBoolSettingForKey:@"KeyboardDisplayRequiresUserAction" defaultValue:YES]) {
-        [self keyboardDisplayDoesNotRequireUserAction];
-    }
+@implementation CDVWKWebViewEngine
+
+-(void) pluginInitialize {
+    [super pluginInitialize];
+    
+    if (![self.webView isKindOfClass:WKWebView.class])
+        return;
+
+    //WKWebView *wkWebView = (WKWebView *) self.webView;
+    
+    [self keyboardDisplayDoesNotRequireUserAction]
 }
 
 // https://github.com/Telerik-Verified-Plugins/WKWebView/commit/04e8296adeb61f289f9c698045c19b62d080c7e3
@@ -24,6 +24,7 @@
     NSOperatingSystemVersion iOS_11_3_0 = (NSOperatingSystemVersion){11, 3, 0};
     NSOperatingSystemVersion iOS_12_2_0 = (NSOperatingSystemVersion){12, 2, 0};
     NSOperatingSystemVersion iOS_13_0_0 = (NSOperatingSystemVersion){13, 0, 0};
+    NSOperatingSystemVersion iOS_14_0_0 = (NSOperatingSystemVersion){14, 0, 0};
 
     char* methodSignature = "_startAssistingNode:userIsInteracting:blurPreviousNode:changingActivityState:userObject:";
 
@@ -57,4 +58,7 @@
         method_setImplementation(method, override);
     }
 }
+
 @end
+
+NS_ASSUME_NONNULL_END
