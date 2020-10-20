@@ -1,5 +1,5 @@
 #import <objc/runtime.h>
-#import "CDVWKWebViewFileXhr.h"
+#import "CDVWKWebViewEngine+InputFocusFix.h"
 #import <Cordova/CDV.h>
 
 NS_ASSUME_NONNULL_BEGIN
