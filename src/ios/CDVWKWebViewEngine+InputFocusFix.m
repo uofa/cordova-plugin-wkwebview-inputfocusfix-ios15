@@ -40,6 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
         methodSignature = "_elementDidFocus:userIsInteracting:blurPreviousNode:activityStateChanges:userObject:";
     }
     
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion: iOS_15_0_0]) {
+        methodSignature = "_elementDidFocus:userIsInteracting:blurPreviousNode:activityStateChanges:userObject:";
+    }
+    
     if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion: iOS_11_3_0]) {
         SEL selector = sel_getUid(methodSignature);
         Method method = class_getInstanceMethod(class, selector);
