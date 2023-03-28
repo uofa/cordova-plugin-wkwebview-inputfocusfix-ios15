@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSOperatingSystemVersion iOS_13_0_0 = (NSOperatingSystemVersion){13, 0, 0};
     NSOperatingSystemVersion iOS_14_0_0 = (NSOperatingSystemVersion){14, 0, 0};
     NSOperatingSystemVersion iOS_15_0_0 = (NSOperatingSystemVersion){15, 0, 0};
+    NSOperatingSystemVersion iOS_17_0_0 = (NSOperatingSystemVersion){16, 0, 0};
 
     char* methodSignature = "_startAssistingNode:userIsInteracting:blurPreviousNode:changingActivityState:userObject:";
 
@@ -42,6 +43,9 @@ NS_ASSUME_NONNULL_BEGIN
     }
     
     if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion: iOS_15_0_0]) {
+        methodSignature = "_elementDidFocus:userIsInteracting:blurPreviousNode:activityStateChanges:userObject:";
+    }
+     if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion: iOS_16_0_0]) {
         methodSignature = "_elementDidFocus:userIsInteracting:blurPreviousNode:activityStateChanges:userObject:";
     }
     
